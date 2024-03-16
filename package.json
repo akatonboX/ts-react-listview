@@ -1,0 +1,12 @@
+{
+  "name": "ts-react-listview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/akatonboX/ts-react-listview.git",
+  "author": "akatonboX <70128369+akatonboX@users.noreply.github.com>",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ]
+}
