@@ -2,37 +2,6 @@
 
 var React = require('react');
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
-
-  if (!css || typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
-    }
-  } else {
-    head.appendChild(style);
-  }
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var css_248z$1 = ".styles-module_root__Xsw1F {\r\n  background: gold;\r\n}\r\n";
-var s = {"root":"styles-module_root__Xsw1F"};
-styleInject(css_248z$1);
-
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function getDefaultExportFromCjs (x) {
@@ -17244,6 +17213,33 @@ lodash$1.exports;
 var lodashExports = lodash$1.exports;
 var lodash = /*@__PURE__*/getDefaultExportFromCjs(lodashExports);
 
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
 var css_248z = ".listView-module_root__1NTsl {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > * {\n  display: flex;\n  width: 100%;\n}\n.listView-module_root__1NTsl > * > :first-child {\n  flex: 1 1 auto;\n}\n.listView-module_root__1NTsl > * > :last-child {\n  width: 20px;\n  min-width: 20px;\n}\n.listView-module_root__1NTsl > :first-child {\n  flex: 0 0 auto;\n}\n.listView-module_root__1NTsl > :first-child > :nth-child(2) {\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n}\n.listView-module_root__1NTsl > div:nth-child(2) {\n  flex: 1 1 auto;\n  overflow: hidden;\n  min-width: 0;\n  border: solid 1px lightgray;\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :first-child {\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :first-child > * {\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :nth-child(2) {\n  width: 100%;\n  height: 100%;\n  overflow: scroll;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :nth-child(2) > div:first-child {\n  width: fit-content;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :nth-child(2)::-webkit-scrollbar {\n  display: none;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :last-child > :first-child {\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  overflow-y: scroll;\n  overflow-x: hidden;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :last-child > :first-child > * {\n  min-height: 1px;\n  min-width: 1px;\n}\n.listView-module_root__1NTsl > :last-child {\n  flex: 0 0 auto;\n  height: 20px;\n  min-height: 20px;\n}\n.listView-module_root__1NTsl > :last-child > :nth-child(2) {\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.listView-module_root__1NTsl > :last-child > :nth-child(2) > * {\n  min-height: 1px;\n  min-width: 1px;\n}\n\n.listView-module_HeaderItemRoot__F5jkd {\n  display: flex;\n  box-sizing: border-box;\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n}\n.listView-module_HeaderItemRoot__F5jkd > :first-child {\n  flex-grow: 1;\n  overflow: hidden;\n  white-space: nowrap;\n  padding: 5px;\n}\n.listView-module_HeaderItemRoot__F5jkd > .listView-module_resize__jtJmW {\n  position: relative;\n}\n.listView-module_HeaderItemRoot__F5jkd > .listView-module_resize__jtJmW > div {\n  position: absolute;\n  width: 10px;\n  height: 100%;\n  left: 5px;\n  position: relative;\n  cursor: col-resize;\n}\n\n.listView-module_row__b4xjI {\n  display: flex;\n  box-sizing: border-box;\n}\n\n.listView-module_cell__9WwI7 {\n  overflow: hidden;\n  white-space: nowrap;\n  box-sizing: border-box;\n}";
 var styles = {"root":"listView-module_root__1NTsl","HeaderItemRoot":"listView-module_HeaderItemRoot__F5jkd","resize":"listView-module_resize__jtJmW","row":"listView-module_row__b4xjI","cell":"listView-module_cell__9WwI7"};
 styleInject(css_248z);
@@ -17429,12 +17425,7 @@ const ListViewItem = function (props) {
     return React.createElement(React.Fragment, null);
 };
 
-const TestComponent = ({ textText }) => {
-    return React.createElement("div", { className: s.root }, textText !== null && textText !== void 0 ? textText : 'Hello!');
-};
-
 exports.ListView = ListView;
 exports.ListViewItem = ListViewItem;
 exports.ListViewRow = ListViewRow;
-exports.TestComponent = TestComponent;
 //# sourceMappingURL=index.js.map
