@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouteError } from 'react-router-dom';
 import { PageLayout } from '../layout/pageLayout';
 import styles from "./example3Page.module.scss";
-import { ListView, ListViewItem, ListViewRow } from '@akatonbo/ts-react-listview';
+import { ListView, ListViewItem, ListViewRow } from 'ts-react-listview';
 export function Example3Page(
   props: {
   }

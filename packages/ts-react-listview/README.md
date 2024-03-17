@@ -9,11 +9,11 @@
 * -webkit-scrollbar is used for css.
 # Installation
 ```shell
-npm install @akatonbo/ts-react-listview
+yarn install ts-react-listview
 ```
 
 # release
-* [2024/3/17]v1.0.0リリース
+* [2024/3/17]v1.0.0 released 
 
 # simple example
 <a href="https://app.archive-gp.com/ts-react-listview/example1">demo</a>
@@ -22,7 +22,7 @@ npm install @akatonbo/ts-react-listview
 import React from 'react';
 import { PageLayout } from '../layout/pageLayout';
 import styles from "./example1Page.module.scss";
-import { ListView, ListViewItem, ListViewRow } from '@akatonbo/ts-react-listview';
+import { ListView, ListViewItem, ListViewRow } from 'ts-react-listview';
 export function Example1Page(
   props: {
   }
@@ -84,7 +84,7 @@ export function Example1Page(
 import React from 'react';
 import { PageLayout } from '../layout/pageLayout';
 import styles from "./example2Page.module.scss";
-import { ListView, ListViewItem, ListViewRow } from '@akatonbo/ts-react-listview';
+import { ListView, ListViewItem, ListViewRow } from 'ts-react-listview';
 export function Example2Page(
   props: {
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageLayout } from '../layout/pageLayout';
 import styles from "./example1Page.module.scss";
-import { ListView, ListViewItem, ListViewRow } from '@akatonbo/ts-react-listview';
+import { ListView, ListViewItem, ListViewRow } from 'ts-react-listview';
 export function Example1Page(
   props: {
   }

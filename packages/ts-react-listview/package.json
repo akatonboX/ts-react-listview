@@ -1,10 +1,19 @@
 {
-  "name": "@akatonbo/ts-react-listview",
+  "name": "ts-react-listview",
   "version": "1.0.0",
   "description": "listview component for react",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "private": false,
+  "author": {
+    "name": "akatonbo",
+    "email": "akatonbo@archive-gp.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akatonboX/ts-react-listview.git"
+  },
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint './{src,app}/**/*.{ts,tsx}'",
@@ -14,7 +23,9 @@
   "keywords": [
     "react",
     "typescript",
-    "bottom-sheet"
+    "listview",
+    "ui",
+    "component"
   ],
   "license": "MIT",
   "peerDependencies": {
