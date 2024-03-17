@@ -20,9 +20,7 @@ export function Example1Page(
   return (
     <PageLayout title="Example1">
       <div>
-
-        {/* <div style={{backgroundColor: "red"}} /> */}
-        <ListView headers={[
+        <ListView hasRowHeader={true} rowHeaderWidth={300} rowHeight={100} horizontalLineStyle="1px solid black" verticvalLineStyle="1px solid black" onResizeColumn={(name, width) => {console.log(name,width)}} headers={[
           {
             name: "a",
             label: <div className={styles.listViewCloumn}>A</div>,
@@ -50,7 +48,7 @@ export function Example1Page(
           },
         ]}>
           {(data ?? []).map((item, index) => (
-            <ListViewRow key={index}>
+            <ListViewRow key={index} >
               <ListViewItem name="a">
                 <div className={styles.listViewCell}>{item.a}</div>
               </ListViewItem>

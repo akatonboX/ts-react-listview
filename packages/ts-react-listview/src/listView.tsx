@@ -1,10 +1,11 @@
 import lodash from "lodash";
-import React from "react";
+import React, { CSSProperties } from "react";
+
 
 import styles from "./listView.module.scss";
 
-
 const getId = (i => () => i++)(1);
+
 
 export const ListView = function(
   props: {
@@ -13,19 +14,37 @@ export const ListView = function(
       label: React.ReactNode,
       defaultWidth: number,
     }[],
+    hasRowHeader?: boolean;
+    rowHeaderWidth?: number,
+    rowHeight?: number,
+    verticvalLineStyle?: CSSProperties["border"],
+    horizontalLineStyle?: CSSProperties["border"],
+    resizeColumnEnabled?: boolean;
+    onResizeColumn?: (name: string, newWidth: number) => void;
     children: React.ReactElement<ListViewRowProps, typeof ListViewRow>[] |  React.ReactElement<ListViewRowProps, typeof ListViewRow>
   }
 )
 {
+  //■propsの初期値を決定
+  const rowHeaderWidth = props.rowHeaderWidth ?? 50;
+  const hasRowHeader = props.hasRowHeader ?? false;
+  const rowHeight = props.rowHeight ?? (hasRowHeader ? 30 : undefined);//指定がなく、行ヘッダをサポートするなら、30pxにする。
+  const verticvalLineStyle = props.verticvalLineStyle;
+  const horizontalLineStyle = props.horizontalLineStyle ?? "solid 1px lightgray";
+  const resizeColumnEnabled = props.resizeColumnEnabled ?? true;
+  const onResizeColumn = props.onResizeColumn ?? ((name: string, column: number) => {});
+
   //■画面上に複数使用された場合に備えて、クラス名などに使用する一意な値を採番する。
   const componentId = React.useMemo(() => `listview_${String(getId())}`, []);
 
 
   //■childrenを配列に展開する。
   const rows = lodash.isArray(props.children) ? props.children : [props.children];
+  const rowProps = lodash.isArray(props.children) ? props.children.map(item => item.props) : [props.children.props];
 
   //■スクロールのコントロール
-  const headerContainerElement = React.useRef<HTMLDivElement>(null);//ヘッダコンテナ
+  const columnHeaderContainerElement = React.useRef<HTMLDivElement>(null);//列ヘッダコンテナ
+  const rowHeaderContainerElement = React.useRef<HTMLDivElement>(null);//行ヘッダコンテナ
   const contentsContainerElement = React.useRef<HTMLDivElement>(null);//コンテンツコンテナ
   const scrollXContainerElement = React.useRef<HTMLDivElement>(null);//横スクロールバーコンテナ
   const scrollYContainerElement = React.useRef<HTMLDivElement>(null);//縦スクロールバーコンテナ
@@ -63,12 +82,14 @@ export const ListView = function(
   //■スクロールエリアのスクロール状態をコンテンツエリアのスクロール状態に反映させるメソッド
   //※
   const scrollTo = (x: number, y: number) => {
-    if(headerContainerElement.current == null || contentsContainerElement.current == null || scrollXContainerElement.current == null || scrollYContainerElement.current == null)return;
-    if(headerContainerElement.current.scrollLeft != x)headerContainerElement.current.scrollLeft = x;
+    if(columnHeaderContainerElement.current == null || rowHeaderContainerElement.current == null || contentsContainerElement.current == null || scrollXContainerElement.current == null || scrollYContainerElement.current == null)return;
+    if(columnHeaderContainerElement.current.scrollLeft != x)columnHeaderContainerElement.current.scrollLeft = x;
+    if(rowHeaderContainerElement.current.scrollTop != y)rowHeaderContainerElement.current.scrollTop = y;
     if(contentsContainerElement.current.scrollLeft != x)contentsContainerElement.current.scrollLeft = x;
     if(contentsContainerElement.current.scrollTop != y)contentsContainerElement.current.scrollTop = y;
     if(scrollXContainerElement.current.scrollLeft != x)scrollXContainerElement.current.scrollLeft = x;
     if(scrollYContainerElement.current.scrollTop != y)scrollYContainerElement.current.scrollTop = y;
+
   };
 
   //■横スクロールの位置を取得するメソッド
@@ -81,16 +102,17 @@ export const ListView = function(
 
   //■コンテンツの生成
   //※下記のような構造
-  // A B   A: 列ヘッダ, B: 余白
-  // C D   C: コンテンツ, D: 縦スクロールバー
-  // E F   E: 横スクロールバー, F: 余白
+  // A B C  A: 余白, B: 列ヘッダ, C: 余白
+  // D E F  D: 行ヘッダ, E: コンテンツ, F: 縦スクロールバー
+  // G H I  G: 余白, H: 横スクロールバー, I: 余白
   return (
     <div className={styles.root}>
-      <div> {/* ヘッダコンテナと余白 */}
-        <div ref={headerContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, getScrollTop())}}>{/* ヘッダコンテナ */}
+      <div> {/*  A: 余白, B: 列ヘッダ, C: 余白 */}
+        <div style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}/>{/* 余白 */}
+        <div ref={columnHeaderContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, getScrollTop())}}>{/* ヘッダコンテナ */}
           {props.headers.map((item, index) => {//カラムを展開
             return(
-              <HeaderItem key={index} className={`className${componentId}_${item.name}`} defaultWidth={item.defaultWidth} onWidthChange={(width, className) => {resetSize();}}>
+              <HeaderItem key={index} className={`className${componentId}_${item.name}`} defaultWidth={item.defaultWidth} resizeColumnEnabled={resizeColumnEnabled} onWidthChange={(width, className) => {resetSize();onResizeColumn(item.name,width);}}>
                 <div className={styles.headerLabel}>
                   {item.label}
                 </div>
@@ -100,19 +122,27 @@ export const ListView = function(
         </div>
         <div/>{/* 余白 */}
       </div>
-      <div> {/* コンテンツコンテナと縦スクロールコンテナの横並び */}
+      <div> {/* 行ヘッダ, E: コンテンツ, F: 縦スクロールバー */}
+        <div ref={rowHeaderContainerElement} style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}>{/* 行ヘッダ */}
+          
+          {hasRowHeader ? 
+            rowProps.map((rowProp, index) => {
+              return <div key={index} style={{height: rowHeight}}>{rowProp.header}</div>;
+            }) : <></>
+          }
+        </div>
         <div ref={contentsContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop)}}>{/* コンテンツコンテナ */}
           <div ref={contentsElement}>
             {rows.map((row: React.ReactElement<any, string | React.JSXElementConstructor<any>>, index) => {
               const cells = lodash.isArray(row.props.children) ? row.props.children as React.ReactElement[] : [row.props.children as React.ReactElement];
-  
               return (
-                <div key={index} className={styles.row}>
+
+                <div key={index} className={styles.row} style={{height: rowHeight, borderBottom: horizontalLineStyle}}>
                   {props.headers.map((header, index) => {
                     const cell = cells.find(cell => cell.props.name == header.name);
                     return(
-                      <div key={index} className={`${styles.cell} className${componentId}_${header.name}`}>
-                        {cell != null ? cell.props.children : ""}
+                      <div key={index} className={`${styles.cell} className${componentId}_${header.name}`} style={{borderRight: verticvalLineStyle}}>
+                        {cell != null ? cell.props.children : <></>}
                       </div>
                     );
                   })}
@@ -128,7 +158,8 @@ export const ListView = function(
           </div>
         </div>
       </div>
-      <div>{/* 横スクロールコンテナと余白 */}
+      <div>{/* 余白, H: 横スクロールバー, I: 余白 */}
+        <div style={{width: rowHeaderWidth}}/>{/* 余白 */}
         <div ref={scrollXContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, getScrollTop())}}>{/* 横スクロールコンテナ*/}
           <div ref={scrollXContentElement} />
         </div>
@@ -149,6 +180,7 @@ const HeaderItem = function(
     className: string,
     defaultWidth: number,
     onWidthChange?: (width: number, className: string) => void,
+    resizeColumnEnabled: boolean,
     children: React.ReactElement,
   }
 ) 
@@ -176,14 +208,14 @@ const HeaderItem = function(
     if(dragStartData != null){
       const newWidth = dragStartData.width + (event.screenX - dragStartData.point);
       setWidth(newWidth);
-      
     }
   }
   const onMouseUp  = (event: MouseEvent) => {
     if(dragStartData != null){
+      const newWidth = dragStartData.width + (event.screenX - dragStartData.point);
       setDragStartData(null);
       if(props.onWidthChange != null)
-        props.onWidthChange(width, props.className);
+        props.onWidthChange(newWidth, props.className);
     }
   }
 
@@ -216,9 +248,12 @@ const HeaderItem = function(
         `}</style>
         : <></>
       }
-      <div className={styles.headerRoot} style={{width: width}}>
+      <div className={styles.HeaderItemRoot} style={{width: width}}>
         <div>{newChild}</div> {/* カラム */}
-        <div><div ref={controllerRef} /></div>{/* マウスの操作を受け付けるエリア */}
+        {/* マウスの操作を受け付けるエリア */}
+        {props.resizeColumnEnabled ?
+        <div className={styles.resize}><div ref={controllerRef} /></div>
+        : <></>}
       </div>
     </>
   );
@@ -226,6 +261,7 @@ const HeaderItem = function(
 
 //■ListViewの子供に指定するListViewRow
 type ListViewRowProps =  {
+  header?: React.ReactNode,
   children: React.ReactElement<ListViewItemProps, typeof ListViewItem>[] |  React.ReactElement<ListViewItemProps, typeof ListViewItem>
 };
 export const ListViewRow = function(
