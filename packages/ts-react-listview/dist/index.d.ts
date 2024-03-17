@@ -3,4 +3,4 @@ type TestComponentProps = {
     textText?: string;
 };
 export declare const TestComponent: React.FC<TestComponentProps>;
-export {};
+export * from "./listView";

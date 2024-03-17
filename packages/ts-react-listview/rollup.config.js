@@ -18,6 +18,7 @@ module.exports = {
     commonjs(),
     postcss({
       modules: true,
-    }),
+      use: ['sass'],
+    }),      
   ],
 };
