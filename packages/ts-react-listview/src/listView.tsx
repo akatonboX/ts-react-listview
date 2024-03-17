@@ -141,7 +141,7 @@ export const ListView = function(
                   {props.headers.map((header, index) => {
                     const cell = cells.find(cell => cell.props.name == header.name);
                     return(
-                      <div key={index} className={`${styles.cell} className${componentId}_${header.name}`} style={{borderRight: verticvalLineStyle}}>
+                      <div key={index} className={`${styles.cell} className${componentId}_${header.name}`} style={{borderLeft: index === 0 ? verticvalLineStyle : undefined, borderRight: verticvalLineStyle}}>
                         {cell != null ? cell.props.children : <></>}
                       </div>
                     );
@@ -159,7 +159,7 @@ export const ListView = function(
         </div>
       </div>
       <div>{/* 余白, H: 横スクロールバー, I: 余白 */}
-        <div style={{width: rowHeaderWidth}}/>{/* 余白 */}
+        <div style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}/>{/* 余白 */}
         <div ref={scrollXContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, getScrollTop())}}>{/* 横スクロールコンテナ*/}
           <div ref={scrollXContentElement} />
         </div>
