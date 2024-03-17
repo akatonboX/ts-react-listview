@@ -170,3 +170,7 @@ export function Example2Page(
 # Prohibit changing column size
 <a href="https://app.archive-gp.com/ts-react-listview/example4">demo</a>
 * By setting ```resizeColumnEnabled={false}```, you will not be able to change the column width.
+
+# Size
+<a href="https://app.archive-gp.com/ts-react-listview/example5" target=">demo</a>
+* The ListView will be the size of the element you place it on.

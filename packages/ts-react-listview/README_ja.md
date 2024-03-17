@@ -170,3 +170,7 @@ export function Example2Page(
 # カラムサイズの変更を禁止する
 <a href="https://app.archive-gp.com/ts-react-listview/example4">demo</a>
 * ```resizeColumnEnabled={false}```を設定することで、列の幅を変更することができなくなります。
+
+# 大きさ
+<a href="https://app.archive-gp.com/ts-react-listview/example5">demo</a>
+* ListViewは、それを配置した要素のサイズになります。

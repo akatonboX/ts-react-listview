@@ -20,6 +20,7 @@ export const PageLayout = (
           <button onClick={e =>{navigate("/example2")}}>example2</button>
           <button onClick={e =>{navigate("/example3")}}>example3</button>
           <button onClick={e =>{navigate("/example4")}}>example4</button>
+          <button onClick={e =>{navigate("/example5")}}>example5</button>
         </div>
         <div>{/*コンテンツ*/}
           
