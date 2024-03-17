@@ -16,7 +16,10 @@ export const PageLayout = (
     <>
       <div className={styles.root}>
         <div>{/*ヘッダ-*/}
-          <button onClick={e =>{e.preventDefault();navigate("/example1")}}>example1</button>
+          <button onClick={e =>{navigate("/example1")}}>example1</button>
+          <button onClick={e =>{navigate("/example2")}}>example2</button>
+          <button onClick={e =>{navigate("/example3")}}>example3</button>
+          <button onClick={e =>{navigate("/example4")}}>example4</button>
         </div>
         <div>{/*コンテンツ*/}
           

@@ -1,8 +1,8 @@
 import React from 'react';
 import { PageLayout } from '../layout/pageLayout';
-import styles from "./example1Page.module.scss";
+import styles from "./example2Page.module.scss";
 import { ListView, ListViewItem, ListViewRow } from '@akatonbo/ts-react-listview';
-export function Example1Page(
+export function Example2Page(
   props: {
   }
 ) 
@@ -15,9 +15,9 @@ export function Example1Page(
     };
   });
   return (
-    <PageLayout title="Example1">
+    <PageLayout title="Example2">
       <div>
-        <ListView headers={[
+        <ListView hasRowHeader={true} rowHeaderWidth={300} rowHeight={100}headers={[
           {
             name: "a",
             label: <div className={styles.listViewCloumn}>A</div>,
@@ -35,7 +35,7 @@ export function Example1Page(
           },
         ]}>
           {(data ?? []).map((item, index) => (
-            <ListViewRow key={index} >
+            <ListViewRow key={index}  header={<div style={{height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>{index}</div>} >
               <ListViewItem name="a">
                 <div className={styles.listViewCell}>{item.a}</div>
               </ListViewItem>

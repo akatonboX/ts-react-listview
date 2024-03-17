@@ -1,12 +1,12 @@
 # ts-react-listview
-* ListView component for react.
-* Supports fixed row headers, column headers, and changing column widths.
+* react用のListViewコンポーネントです。
+* 固定の行ヘッダ、列ヘッダ、列の幅の変更をサポートします。
 
 
 # Note
-* The client is assumed to be Windows.
-* Confirmed to work with chrome.
-* -webkit-scrollbar is used for css.
+* クライアントは、Windowsを想定しています。
+* chromeで動作確認されています。
+* cssに、-webkit-scrollbarを使用しています。
 # Installation
 ```shell
 npm install @akatonbo/ts-react-listview
@@ -15,7 +15,7 @@ npm install @akatonbo/ts-react-listview
 # release
 * [2024/3/17]v1.0.0リリース
 
-# simple example
+# 簡単な例
 <a href="https://app.archive-gp.com/ts-react-listview/example1">demo</a>
 
 ``` typescript
@@ -75,11 +75,11 @@ export function Example1Page(
 }
 ```
 
-# Show row headers
+# 行ヘッダを表示する
 <a href="https://app.archive-gp.com/ts-react-listview/example2">demo</a>
-* Set ```hasRowHeader={true}``` to display row headers.
-* If you display row headers, you need to specify the row width and height. ```rowHeaderWidth={300} rowHeight={100} ```
-
+* ```hasRowHeader={true}```に設定すると、行ヘッダが表示されます。
+* 行ヘッダを表示した場合、行の幅と、高さを指定する必要があります。```rowHeaderWidth={300} rowHeight={100} ```
+* 
 ``` typescript
 import React from 'react';
 import { PageLayout } from '../layout/pageLayout';
@@ -137,15 +137,15 @@ export function Example2Page(
 }
 ```
 
-# Change borders
+# 罫線を変更する
 <a href="https://app.archive-gp.com/ts-react-listview/example3">demo</a>
-* You can specify the border style, such as ```horizontalLineStyle="1px solid black" verticvalLineStyle="1px solid black"```.
+* ```horizontalLineStyle="1px solid black" verticvalLineStyle="1px solid black"```のように、罫線のスタイルを指定できます。
 
-# What happens when column width changes
+# 列の幅が変更されたときの処理
 <a href="https://app.archive-gp.com/ts-react-listview/example3">demo</a>
 
-* Use the ```onResizeColumn``` property.
-* Below is an example of retaining the changed column width in local storage and applying it on reload.
+* ```onResizeColumn```プロパティを使用します。
+* 下記は、ローカルストレージで変更された列の幅を保持し、リロードで適用する例です。
 ```typescript
  <ListView horizontalLineStyle="1px solid black" verticvalLineStyle="1px solid black" onResizeColumn={(name, width) => {
           localStorage.setItem(`Example3Page_${name}`, String(width));
@@ -167,6 +167,6 @@ export function Example2Page(
           },
         ]}>
 ```
-# Prohibit changing column size
+# カラムサイズの変更を禁止する
 <a href="https://app.archive-gp.com/ts-react-listview/example4">demo</a>
-* By setting ```resizeColumnEnabled={false}```, you will not be able to change the column width.
+* ```resizeColumnEnabled={false}```を設定することで、列の幅を変更することができなくなります。

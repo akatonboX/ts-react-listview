@@ -2,6 +2,7 @@
   "name": "example-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/ts-react-listview",
   "dependencies": {
     "@akatonbo/ts-react-listview": "*",
     "@emotion/react": "^11.11.4",

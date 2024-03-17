@@ -1,8 +1,9 @@
 import React from 'react';
+import { useRouteError } from 'react-router-dom';
 import { PageLayout } from '../layout/pageLayout';
-import styles from "./example1Page.module.scss";
+import styles from "./example3Page.module.scss";
 import { ListView, ListViewItem, ListViewRow } from '@akatonbo/ts-react-listview';
-export function Example1Page(
+export function Example3Page(
   props: {
   }
 ) 
@@ -15,27 +16,29 @@ export function Example1Page(
     };
   });
   return (
-    <PageLayout title="Example1">
+    <PageLayout title="Example3">
       <div>
-        <ListView headers={[
+        <ListView horizontalLineStyle="1px solid black" verticvalLineStyle="1px solid black" onResizeColumn={(name, width) => {
+          localStorage.setItem(`Example3Page_${name}`, String(width));
+        }} headers={[
           {
             name: "a",
             label: <div className={styles.listViewCloumn}>A</div>,
-            defaultWidth: 70,
+            defaultWidth: Number(localStorage.getItem(`Example3Page_a`) ?? 100),
           },
           {
             name: "b",
             label: <div className={styles.listViewCloumn}>B</div>,
-            defaultWidth: 100,
+            defaultWidth: Number(localStorage.getItem(`Example3Page_b`) ?? 100),
           },
           {
             name: "c",
             label: <div className={styles.listViewCloumn}>C</div>,
-            defaultWidth: 120,
+            defaultWidth: Number(localStorage.getItem(`Example3Page_c`) ?? 100),
           },
         ]}>
           {(data ?? []).map((item, index) => (
-            <ListViewRow key={index} >
+            <ListViewRow key={index}  header={<div style={{height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>{index}</div>} >
               <ListViewItem name="a">
                 <div className={styles.listViewCell}>{item.a}</div>
               </ListViewItem>
