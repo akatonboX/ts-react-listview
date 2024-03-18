@@ -13,7 +13,7 @@ yarn install ts-react-listview
 ```
 
 # release
-* [2024/3/17]v1.0.0 released 
+* [2024/3/18] v1.0.1 released 
 
 # simple example
 <a href="https://app.archive-gp.com/ts-react-listview/example1">demo</a>
