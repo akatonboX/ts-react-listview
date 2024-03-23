@@ -13,7 +13,7 @@ function App() {
   return (
     <RouterProvider router={createBrowserRouter(createRoutesFromElements(
       <Route 
-        path='/'
+        path=''
         errorElement={<NotFoundPage />}
         element={<Outlet />}
       >

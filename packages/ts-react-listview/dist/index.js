@@ -17240,7 +17240,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".listView-module_root__1NTsl {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > * {\n  display: flex;\n  width: 100%;\n}\n.listView-module_root__1NTsl > * > :first-child {\n  flex: 1 1 auto;\n}\n.listView-module_root__1NTsl > * > :last-child {\n  width: 20px;\n  min-width: 20px;\n}\n.listView-module_root__1NTsl > :first-child {\n  flex: 0 0 auto;\n}\n.listView-module_root__1NTsl > :first-child > :nth-child(2) {\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n}\n.listView-module_root__1NTsl > div:nth-child(2) {\n  flex: 1 1 auto;\n  overflow: hidden;\n  min-width: 0;\n  border: solid 1px lightgray;\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :first-child {\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :first-child > * {\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :nth-child(2) {\n  width: 100%;\n  height: 100%;\n  overflow: scroll;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :nth-child(2) > div:first-child {\n  width: fit-content;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :nth-child(2)::-webkit-scrollbar {\n  display: none;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :last-child > :first-child {\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  overflow-y: scroll;\n  overflow-x: hidden;\n}\n.listView-module_root__1NTsl > div:nth-child(2) > :last-child > :first-child > * {\n  min-height: 1px;\n  min-width: 1px;\n}\n.listView-module_root__1NTsl > :last-child {\n  flex: 0 0 auto;\n  height: 20px;\n  min-height: 20px;\n}\n.listView-module_root__1NTsl > :last-child > :nth-child(2) {\n  width: 100%;\n  height: 100%;\n  background-color: white;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.listView-module_root__1NTsl > :last-child > :nth-child(2) > * {\n  min-height: 1px;\n  min-width: 1px;\n}\n\n.listView-module_HeaderItemRoot__F5jkd {\n  display: flex;\n  box-sizing: border-box;\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n}\n.listView-module_HeaderItemRoot__F5jkd > :first-child {\n  flex-grow: 1;\n  overflow: hidden;\n  white-space: nowrap;\n  padding: 5px;\n}\n.listView-module_HeaderItemRoot__F5jkd > .listView-module_resize__jtJmW {\n  position: relative;\n}\n.listView-module_HeaderItemRoot__F5jkd > .listView-module_resize__jtJmW > div {\n  position: absolute;\n  width: 10px;\n  height: 100%;\n  left: 5px;\n  position: relative;\n  cursor: col-resize;\n}\n\n.listView-module_row__b4xjI {\n  display: flex;\n  box-sizing: border-box;\n}\n\n.listView-module_cell__9WwI7 {\n  overflow: hidden;\n  white-space: nowrap;\n  box-sizing: border-box;\n}";
+var css_248z = ".listView-module_root__1NTsl {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  border: solid 1px rgba(0, 0, 0, 0.25);\n  overflow: hidden;\n}\n.listView-module_root__1NTsl > :first-child {\n  flex: 0 0 auto;\n  display: flex;\n  background-color: whitesmoke;\n}\n.listView-module_root__1NTsl > :first-child > :first-child {\n  flex: 0 0 auto;\n  position: relative;\n  z-index: 1;\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > :first-child > :last-child {\n  flex: 1 1 auto;\n  overflow: hidden;\n  display: flex;\n}\n.listView-module_root__1NTsl > :last-child {\n  flex: 1 1 auto;\n  display: flex;\n}\n.listView-module_root__1NTsl > :last-child > :first-child {\n  flex: 0 0 auto;\n  position: relative;\n}\n.listView-module_root__1NTsl > :last-child > :first-child > :first-child {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.listView-module_root__1NTsl > :last-child > :first-child > :first-child > :first-child {\n  display: flex;\n  flex-direction: column;\n}\n.listView-module_root__1NTsl > :last-child > :first-child > :first-child > :first-child > * {\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n  box-sizing: border-box;\n}\n.listView-module_root__1NTsl > :last-child > :last-child {\n  flex: 1 1 auto;\n  position: relative;\n}\n.listView-module_root__1NTsl > :last-child > :last-child > :first-child {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n}\n.listView-module_root__1NTsl > :last-child > :last-child > :first-child > :first-child {\n  width: fit-content;\n}\n\n.listView-module_HeaderItemRoot__F5jkd {\n  display: flex;\n  box-sizing: border-box;\n  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);\n  border: solid 1px rgba(0, 0, 0, 0.25);\n}\n.listView-module_HeaderItemRoot__F5jkd > :first-child {\n  flex-grow: 1;\n  overflow: hidden;\n  white-space: nowrap;\n  padding: 5px;\n}\n.listView-module_HeaderItemRoot__F5jkd > .listView-module_resize__jtJmW {\n  position: relative;\n}\n.listView-module_HeaderItemRoot__F5jkd > .listView-module_resize__jtJmW > div {\n  position: absolute;\n  width: 10px;\n  height: 100%;\n  left: 5px;\n  position: relative;\n  cursor: col-resize;\n}\n\n.listView-module_row__b4xjI {\n  display: flex;\n  box-sizing: border-box;\n}\n\n.listView-module_cell__9WwI7 {\n  overflow: hidden;\n  white-space: nowrap;\n  box-sizing: border-box;\n}";
 var styles = {"root":"listView-module_root__1NTsl","HeaderItemRoot":"listView-module_HeaderItemRoot__F5jkd","resize":"listView-module_resize__jtJmW","row":"listView-module_row__b4xjI","cell":"listView-module_cell__9WwI7"};
 styleInject(css_248z);
 
@@ -17260,95 +17260,46 @@ const ListView = function (props) {
     //■childrenを配列に展開する。
     const rows = lodash.isArray(props.children) ? props.children : [props.children];
     const rowProps = lodash.isArray(props.children) ? props.children.map(item => item.props) : [props.children.props];
-    //■スクロールのコントロール
-    const columnHeaderContainerElement = React.useRef(null); //列ヘッダコンテナ
-    const rowHeaderContainerElement = React.useRef(null); //行ヘッダコンテナ
-    const contentsContainerElement = React.useRef(null); //コンテンツコンテナ
-    const scrollXContainerElement = React.useRef(null); //横スクロールバーコンテナ
-    const scrollYContainerElement = React.useRef(null); //縦スクロールバーコンテナ
-    const contentsElement = React.useRef(null); //コンテンツエリア
-    const scrollXContentElement = React.useRef(null); //横スクロールバーエリア
-    const scrollYContentElement = React.useRef(null); //縦スクロールバーエリア
-    //■スクロールバーエリアのサイズをコンテンツのサイズに合わせるメソッド
-    const resetSize = () => {
-        if (contentsElement.current != null) {
-            if (scrollYContentElement.current != null) {
-                scrollYContentElement.current.style.height = `${contentsElement.current.clientHeight}px`;
-            }
-            if (scrollXContentElement.current != null) {
-                scrollXContentElement.current.style.width = `${contentsElement.current.clientWidth}px`;
-            }
-        }
-    };
-    //■ウィンドウサイズの変更ベントで、スクロールバーエリアのサイズを調整する
-    React.useEffect(() => {
-        resetSize();
-        const onWindowResize = (e) => {
-            resetSize();
-        };
-        window.addEventListener("resize", onWindowResize);
-        return () => {
-            window.removeEventListener('resize', onWindowResize);
-        };
-    }, []);
+    //■エレメント
+    const columnHeaderContetntElement = React.useRef(null); //列ヘッダコンテンツ
+    const rowHeaderContetntElement = React.useRef(null); //行ヘッダコンテンツ
     //■スクロールエリアのスクロール状態をコンテンツエリアのスクロール状態に反映させるメソッド
     //※
     const scrollTo = (x, y) => {
-        if (columnHeaderContainerElement.current == null || rowHeaderContainerElement.current == null || contentsContainerElement.current == null || scrollXContainerElement.current == null || scrollYContainerElement.current == null)
+        if (columnHeaderContetntElement.current == null || rowHeaderContetntElement.current == null)
             return;
-        if (columnHeaderContainerElement.current.scrollLeft != x)
-            columnHeaderContainerElement.current.scrollLeft = x;
-        if (rowHeaderContainerElement.current.scrollTop != y)
-            rowHeaderContainerElement.current.scrollTop = y;
-        if (contentsContainerElement.current.scrollLeft != x)
-            contentsContainerElement.current.scrollLeft = x;
-        if (contentsContainerElement.current.scrollTop != y)
-            contentsContainerElement.current.scrollTop = y;
-        if (scrollXContainerElement.current.scrollLeft != x)
-            scrollXContainerElement.current.scrollLeft = x;
-        if (scrollYContainerElement.current.scrollTop != y)
-            scrollYContainerElement.current.scrollTop = y;
+        columnHeaderContetntElement.current.style.marginLeft = `${x * -1}px`;
+        rowHeaderContetntElement.current.style.marginTop = `${y * -1}px`;
     };
-    //■横スクロールの位置を取得するメソッド
-    const getScrollLeft = () => contentsContainerElement.current == null ? 0 : contentsContainerElement.current.scrollLeft;
-    //■立てスクロールの位置を取得するメソッド
-    const getScrollTop = () => contentsContainerElement.current == null ? 0 : contentsContainerElement.current.scrollTop;
     //■コンテンツの生成
     //※下記のような構造
-    // A B C  A: 余白, B: 列ヘッダ, C: 余白
-    // D E F  D: 行ヘッダ, E: コンテンツ, F: 縦スクロールバー
-    // G H I  G: 余白, H: 横スクロールバー, I: 余白
+    // A B   A: 余白, B: 列ヘッダ
+    // C D   C: 行ヘッダ, D: コンテンツ
     return (React.createElement("div", { className: styles.root },
         React.createElement("div", null,
             " ",
             React.createElement("div", { style: { width: rowHeaderWidth, display: hasRowHeader ? "block" : "none" } }),
-            React.createElement("div", { ref: columnHeaderContainerElement, onScroll: e => { scrollTo(e.currentTarget.scrollLeft, getScrollTop()); } }, props.headers.map((item, index) => {
-                return (React.createElement(HeaderItem, { key: index, className: `className${componentId}_${item.name}`, defaultWidth: item.defaultWidth, resizeColumnEnabled: resizeColumnEnabled, onWidthChange: (width, className) => { resetSize(); onResizeColumn(item.name, width); } },
+            React.createElement("div", { ref: columnHeaderContetntElement }, props.headers.map((item, index) => {
+                return (React.createElement(HeaderItem, { key: index, className: `className${componentId}_${item.name}`, defaultWidth: item.defaultWidth, resizeColumnEnabled: resizeColumnEnabled, onWidthChange: (width, className) => { onResizeColumn(item.name, width); } },
                     React.createElement("div", { className: styles.headerLabel }, item.label)));
-            })),
-            React.createElement("div", null)),
+            }))),
         React.createElement("div", null,
             " ",
-            React.createElement("div", { ref: rowHeaderContainerElement, style: { width: rowHeaderWidth, display: hasRowHeader ? "block" : "none" } }, hasRowHeader ?
-                rowProps.map((rowProp, index) => {
-                    return React.createElement("div", { key: index, style: { height: rowHeight } }, rowProp.header);
-                }) : React.createElement(React.Fragment, null)),
-            React.createElement("div", { ref: contentsContainerElement, onScroll: e => { scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop); } },
-                React.createElement("div", { ref: contentsElement }, rows.map((row, index) => {
-                    const cells = lodash.isArray(row.props.children) ? row.props.children : [row.props.children];
-                    return (React.createElement("div", { key: index, className: styles.row, style: { height: rowHeight, borderBottom: horizontalLineStyle } }, props.headers.map((header, index) => {
-                        const cell = cells.find(cell => cell.props.name == header.name);
-                        return (React.createElement("div", { key: index, className: `${styles.cell} className${componentId}_${header.name}`, style: { borderLeft: index === 0 ? verticvalLineStyle : undefined, borderRight: verticvalLineStyle } }, cell != null ? cell.props.children : React.createElement(React.Fragment, null)));
-                    })));
-                }))),
+            React.createElement("div", { style: { width: rowHeaderWidth, display: hasRowHeader ? "block" : "none" }, onScroll: e => { scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop); } },
+                React.createElement("div", null,
+                    React.createElement("div", { ref: rowHeaderContetntElement }, hasRowHeader ?
+                        rowProps.map((rowProp, index) => {
+                            return React.createElement("div", { key: index, style: { height: rowHeight } }, rowProp.header); //セル
+                        }) : React.createElement(React.Fragment, null)))),
             React.createElement("div", null,
-                React.createElement("div", { ref: scrollYContainerElement, onScroll: e => { scrollTo(getScrollLeft(), e.currentTarget.scrollTop); } },
-                    React.createElement("div", { ref: scrollYContentElement })))),
-        React.createElement("div", null,
-            React.createElement("div", { style: { width: rowHeaderWidth, display: hasRowHeader ? "block" : "none" } }),
-            React.createElement("div", { ref: scrollXContainerElement, onScroll: e => { scrollTo(e.currentTarget.scrollLeft, getScrollTop()); } },
-                React.createElement("div", { ref: scrollXContentElement })),
-            React.createElement("div", null))));
+                React.createElement("div", { onScroll: e => { scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop); } },
+                    React.createElement("div", null, rows.map((row, index) => {
+                        const cells = lodash.isArray(row.props.children) ? row.props.children : [row.props.children];
+                        return (React.createElement("div", { key: index, className: styles.row, style: { height: rowHeight, borderBottom: horizontalLineStyle } }, props.headers.map((header, index) => {
+                            const cell = cells.find(cell => cell.props.name == header.name);
+                            return (React.createElement("div", { key: index, className: `${styles.cell} className${componentId}_${header.name}`, style: { borderLeft: index === 0 ? verticvalLineStyle : undefined, borderRight: verticvalLineStyle } }, cell != null ? cell.props.children : React.createElement(React.Fragment, null)));
+                        })));
+                    })))))));
 };
 /**
  * カラムを描画する。カラムそのものと、マウスによる幅の変更操作をサポート。

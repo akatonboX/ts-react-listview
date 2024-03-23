@@ -17,7 +17,7 @@ export function Example2Page(
   return (
     <PageLayout title="Example2">
       <div>
-        <ListView hasRowHeader={true} rowHeaderWidth={300} rowHeight={100}headers={[
+        <ListView hasRowHeader={true} rowHeaderWidth={100} rowHeight={50} headers={[
           {
             name: "a",
             label: <div className={styles.listViewCloumn}>A</div>,

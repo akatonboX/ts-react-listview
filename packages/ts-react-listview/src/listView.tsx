@@ -37,82 +37,34 @@ export const ListView = function(
   //■画面上に複数使用された場合に備えて、クラス名などに使用する一意な値を採番する。
   const componentId = React.useMemo(() => `listview_${String(getId())}`, []);
 
-
   //■childrenを配列に展開する。
   const rows = lodash.isArray(props.children) ? props.children : [props.children];
   const rowProps = lodash.isArray(props.children) ? props.children.map(item => item.props) : [props.children.props];
 
-  //■スクロールのコントロール
-  const columnHeaderContainerElement = React.useRef<HTMLDivElement>(null);//列ヘッダコンテナ
-  const rowHeaderContainerElement = React.useRef<HTMLDivElement>(null);//行ヘッダコンテナ
-  const contentsContainerElement = React.useRef<HTMLDivElement>(null);//コンテンツコンテナ
-  const scrollXContainerElement = React.useRef<HTMLDivElement>(null);//横スクロールバーコンテナ
-  const scrollYContainerElement = React.useRef<HTMLDivElement>(null);//縦スクロールバーコンテナ
-  const contentsElement = React.useRef<HTMLDivElement>(null);//コンテンツエリア
-  const scrollXContentElement = React.useRef<HTMLDivElement>(null);//横スクロールバーエリア
-  const scrollYContentElement = React.useRef<HTMLDivElement>(null);//縦スクロールバーエリア
-
-
-  //■スクロールバーエリアのサイズをコンテンツのサイズに合わせるメソッド
-  const resetSize = () => {
-    if(contentsElement.current != null){
-      if(scrollYContentElement.current != null){
-        scrollYContentElement.current.style.height = `${contentsElement.current.clientHeight}px`;
-      }
-      if(scrollXContentElement.current != null){
-        scrollXContentElement.current.style.width = `${contentsElement.current.clientWidth}px`;
-      }
-    }
-  }
-  //■ウィンドウサイズの変更ベントで、スクロールバーエリアのサイズを調整する
-  React.useEffect(() => {
-    resetSize();
-    
-    const onWindowResize = (e: any) => {
-      resetSize();
-    };
-    window.addEventListener("resize", onWindowResize);
-    return ()=>{ 
-      window.removeEventListener('resize', onWindowResize);
-    };
-
-  }, []);
-
+  //■エレメント
+  const columnHeaderContetntElement = React.useRef<HTMLDivElement>(null);//列ヘッダコンテンツ
+  const rowHeaderContetntElement = React.useRef<HTMLDivElement>(null);//行ヘッダコンテンツ
 
   //■スクロールエリアのスクロール状態をコンテンツエリアのスクロール状態に反映させるメソッド
   //※
   const scrollTo = (x: number, y: number) => {
-    if(columnHeaderContainerElement.current == null || rowHeaderContainerElement.current == null || contentsContainerElement.current == null || scrollXContainerElement.current == null || scrollYContainerElement.current == null)return;
-    if(columnHeaderContainerElement.current.scrollLeft != x)columnHeaderContainerElement.current.scrollLeft = x;
-    if(rowHeaderContainerElement.current.scrollTop != y)rowHeaderContainerElement.current.scrollTop = y;
-    if(contentsContainerElement.current.scrollLeft != x)contentsContainerElement.current.scrollLeft = x;
-    if(contentsContainerElement.current.scrollTop != y)contentsContainerElement.current.scrollTop = y;
-    if(scrollXContainerElement.current.scrollLeft != x)scrollXContainerElement.current.scrollLeft = x;
-    if(scrollYContainerElement.current.scrollTop != y)scrollYContainerElement.current.scrollTop = y;
-
+    if(columnHeaderContetntElement.current == null || rowHeaderContetntElement.current == null)return;
+    columnHeaderContetntElement.current.style.marginLeft = `${x * -1}px`;
+    rowHeaderContetntElement.current .style.marginTop = `${y * -1}px`;
   };
-
-  //■横スクロールの位置を取得するメソッド
-  const getScrollLeft = (): number => contentsContainerElement.current == null ? 0 :contentsContainerElement.current.scrollLeft;
-
-  //■立てスクロールの位置を取得するメソッド
-  const getScrollTop = (): number => contentsContainerElement.current == null ? 0 : contentsContainerElement.current.scrollTop;
-
-  
 
   //■コンテンツの生成
   //※下記のような構造
-  // A B C  A: 余白, B: 列ヘッダ, C: 余白
-  // D E F  D: 行ヘッダ, E: コンテンツ, F: 縦スクロールバー
-  // G H I  G: 余白, H: 横スクロールバー, I: 余白
+  // A B   A: 余白, B: 列ヘッダ
+  // C D   C: 行ヘッダ, D: コンテンツ
   return (
     <div className={styles.root}>
-      <div> {/*  A: 余白, B: 列ヘッダ, C: 余白 */}
-        <div style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}/>{/* 余白 */}
-        <div ref={columnHeaderContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, getScrollTop())}}>{/* ヘッダコンテナ */}
+      <div> {/* A: 余白, B: 列ヘッダ */}
+        <div style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}/>{/* A: 余白 */}
+        <div ref={columnHeaderContetntElement}>{/* B: 列ヘッダ */}
           {props.headers.map((item, index) => {//カラムを展開
             return(
-              <HeaderItem key={index} className={`className${componentId}_${item.name}`} defaultWidth={item.defaultWidth} resizeColumnEnabled={resizeColumnEnabled} onWidthChange={(width, className) => {resetSize();onResizeColumn(item.name,width);}}>
+              <HeaderItem key={index} className={`className${componentId}_${item.name}`} defaultWidth={item.defaultWidth} resizeColumnEnabled={resizeColumnEnabled} onWidthChange={(width, className) => {onResizeColumn(item.name,width);}}>
                 <div className={styles.headerLabel}>
                   {item.label}
                 </div>
@@ -120,53 +72,44 @@ export const ListView = function(
             );
           })}
         </div>
-        <div/>{/* 余白 */}
       </div>
-      <div> {/* 行ヘッダ, E: コンテンツ, F: 縦スクロールバー */}
-        <div ref={rowHeaderContainerElement} style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}>{/* 行ヘッダ */}
-          
-          {hasRowHeader ? 
-            rowProps.map((rowProp, index) => {
-              return <div key={index} style={{height: rowHeight}}>{rowProp.header}</div>;
-            }) : <></>
-          }
-        </div>
-        <div ref={contentsContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop)}}>{/* コンテンツコンテナ */}
-          <div ref={contentsElement}>
-            {rows.map((row: React.ReactElement<any, string | React.JSXElementConstructor<any>>, index) => {
-              const cells = lodash.isArray(row.props.children) ? row.props.children as React.ReactElement[] : [row.props.children as React.ReactElement];
-              return (
-
-                <div key={index} className={styles.row} style={{height: rowHeight, borderBottom: horizontalLineStyle}}>
-                  {props.headers.map((header, index) => {
-                    const cell = cells.find(cell => cell.props.name == header.name);
-                    return(
-                      <div key={index} className={`${styles.cell} className${componentId}_${header.name}`} style={{borderLeft: index === 0 ? verticvalLineStyle : undefined, borderRight: verticvalLineStyle}}>
-                        {cell != null ? cell.props.children : <></>}
-                      </div>
-                    );
-                  })}
-
-                </div>
-              );
-            })}
+      <div> {/* C: 行ヘッダ, D: コンテンツ */}
+        <div style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop)}}>{/* 行ヘッダコンテナ */}
+          <div>
+            <div ref={rowHeaderContetntElement}>
+              {hasRowHeader ? 
+                rowProps.map((rowProp, index) => {
+                  return <div key={index} style={{height: rowHeight}}>{rowProp.header}</div>;//セル
+                }) : <></>
+              }
+            </div>
           </div>
         </div>
-        <div>
-          <div ref={scrollYContainerElement} onScroll={e => {scrollTo(getScrollLeft(), e.currentTarget.scrollTop)}}>{/* 縦スクロールコンテナ*/}
-            <div ref={scrollYContentElement} />
+        <div>{/* コンテンツコンテナ */}
+          <div onScroll={e => {scrollTo(e.currentTarget.scrollLeft, e.currentTarget.scrollTop)}}>
+            <div >
+              {rows.map((row: React.ReactElement<any, string | React.JSXElementConstructor<any>>, index) => {
+                const cells = lodash.isArray(row.props.children) ? row.props.children as React.ReactElement[] : [row.props.children as React.ReactElement];
+                return (
+
+                  <div key={index} className={styles.row} style={{height: rowHeight, borderBottom: horizontalLineStyle}}>
+                    {props.headers.map((header, index) => {
+                      const cell = cells.find(cell => cell.props.name == header.name);
+                      return(
+                        <div key={index} className={`${styles.cell} className${componentId}_${header.name}`} style={{borderLeft: index === 0 ? verticvalLineStyle : undefined, borderRight: verticvalLineStyle}}>
+                          {cell != null ? cell.props.children : <></>}
+                        </div>
+                      );
+                    })}
+
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
-      <div>{/* 余白, H: 横スクロールバー, I: 余白 */}
-        <div style={{width: rowHeaderWidth, display: hasRowHeader ? "block" : "none"}}/>{/* 余白 */}
-        <div ref={scrollXContainerElement} onScroll={e => {scrollTo(e.currentTarget.scrollLeft, getScrollTop())}}>{/* 横スクロールコンテナ*/}
-          <div ref={scrollXContentElement} />
-        </div>
-        <div />{/* 余白 */}
       </div>
     </div>
-   
   );
 };
 

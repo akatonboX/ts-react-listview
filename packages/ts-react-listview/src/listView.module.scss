@@ -1,105 +1,73 @@
 $scrollBarSize: 20px;
 
   //※下記のような構造
-  // A B C  A: 余白, B: 列ヘッダ, C: 余白
-  // D E F  D: 行ヘッダ, E: コンテンツ, F: 縦スクロールバー
-  // G H I  G: 余白, H: 横スクロールバー, I: 余白
+  // A B   A: 余白, B: 列ヘッダ
+  // C D   C: 行ヘッダ, D: コンテンツ
 .root{
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-
-  >*{//共通
-    display: flex;
-    width: 100%;
-
-    >:first-child{
-      flex: 1 1 auto;
-    }
-    >:last-child{
-      width: $scrollBarSize;
-      min-width: $scrollBarSize;
-    }
-  }
-
-  >:first-child{//余白, B: 列ヘッダ, C: 余白
+  border: solid 1px rgba(0, 0, 0, 0.25);
+  overflow: hidden;//行ヘッダはみ出すのを防ぐ
+  > :first-child{//A: 余白, B: 列ヘッダ
     flex: 0 0 auto;
-
-    >:nth-child(2){//B: 列ヘッダ
-      width: 100%;
-      height: 100%;
+    display: flex;
+    background-color: whitesmoke;
+    > :first-child{//A: 余白
+      flex: 0 0 auto;
+      position: relative;
+      z-index: 1;
+      background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+      border: solid 1px rgba(0, 0, 0, 0.25);
+      box-sizing: border-box;
+    }
+    > :last-child{//B: 列ヘッダ
+      flex: 1 1 auto;
       overflow: hidden;
       display: flex;
     }
   }
-
-  >div:nth-child(2){//D: 行ヘッダ, E: コンテンツ, F: 縦スクロールバー
+  > :last-child{//C: 行ヘッダ, D: コンテンツ
     flex: 1 1 auto;
-    overflow: hidden;
-    min-width: 0;
-    border: solid 1px lightgray;
-    box-sizing: border-box;
-    >:first-child{//D: 行ヘッダ
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      > *{
-        background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-        border: solid 1px rgba(0, 0, 0, 0.25);
-        box-sizing: border-box;
-      }
-    }
-    >:nth-child(2){//E: コンテンツ
-      width: 100%;
-      height: 100%;
-      overflow: scroll;//ここをhiddenにするとマウスのスクロールボタンでスクロールできなくなるので、webkit-scrollbarを仕様。
-      >div:first-child{
-        width: fit-content;
-      }
-    }
-    >:nth-child(2)::-webkit-scrollbar{//コンテンツコンテナのスクロールバー制御。コンテンツコンテナをoverflow: hiddenにすると、スクロールボタンでスクロールしなくなる
-      display: none;
-    }
-    >:last-child{//F: 縦スクロールバー
-      >:first-child{
+    display: flex;
+    > :first-child{//C: 行ヘッダ
+      flex: 0 0 auto;
+      position: relative;
+      > :first-child{
+        position: absolute;
         width: 100%;
         height: 100%;
-        background-color: white;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        > *{
-          min-height: 1px;
-          min-width: 1px;
+        overflow: hidden;
+        > :first-child{
+          display: flex;
+          flex-direction: column;
+          > *{//セル
+            background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+            border: solid 1px rgba(0, 0, 0, 0.25);
+            box-sizing: border-box;
+          }
         }
       }
     }
-  }
-  >:last-child{// G: 余白, H: 横スクロールバー, I: 余白
-    flex: 0 0 auto;
-    height: $scrollBarSize;
-    min-height: $scrollBarSize;
-
-    >:nth-child(2){//H: 横スクロールバー
-      width: 100%;
-      height: 100%;
-      background-color: white;
-      overflow-y: hidden;
-      overflow-x: scroll;
-      > *{
-        min-height: 1px;
-        min-width: 1px;
+    > :last-child{// D: コンテンツ
+      flex: 1 1 auto;
+      position: relative;
+      > :first-child{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        > :first-child{
+          width: fit-content;
+        }
       }
     }
   }
 }
 
-
 .HeaderItemRoot{
-
   display: flex;
   box-sizing: border-box;
   

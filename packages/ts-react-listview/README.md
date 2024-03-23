@@ -2,17 +2,16 @@
 * ListView component for react.
 * Supports fixed row headers, column headers, and changing column widths.
 
-
-# Note
-* The client is assumed to be Windows.
-* Confirmed to work with chrome.
-* -webkit-scrollbar is used for css.
 # Installation
 ```shell
-yarn install ts-react-listview
+yarn add ts-react-listview
 ```
 
 # release
+* [2024/3/23] v1.0.2 released
+1. Revised the design.
+1. Scroll bars now display properly on smartphones.
+
 * [2024/3/18] v1.0.1 released 
 
 # simple example
@@ -78,7 +77,7 @@ export function Example1Page(
 # Show row headers
 <a href="https://app.archive-gp.com/ts-react-listview/example2">demo</a>
 * Set ```hasRowHeader={true}``` to display row headers.
-* If you display row headers, you need to specify the row width and height. ```rowHeaderWidth={300} rowHeight={100} ```
+* If you display row headers, you need to specify the row width and height. ```rowHeaderWidth={100} rowHeight={50} ```
 
 ``` typescript
 import React from 'react';
@@ -100,7 +99,7 @@ export function Example2Page(
   return (
     <PageLayout title="Example1">
       <div>
-        <ListView hasRowHeader={true} rowHeaderWidth={300} rowHeight={100}headers={[
+        <ListView hasRowHeader={true} rowHeaderWidth={100} rowHeight={50} headers={[
           {
             name: "a",
             label: <div className={styles.listViewCloumn}>A</div>,

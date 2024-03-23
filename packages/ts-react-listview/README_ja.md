@@ -2,18 +2,17 @@
 * react用のListViewコンポーネントです。
 * 固定の行ヘッダ、列ヘッダ、列の幅の変更をサポートします。
 
-
-# Note
-* クライアントは、Windowsを想定しています。
-* chromeで動作確認されています。
-* cssに、-webkit-scrollbarを使用しています。
 # Installation
 ```shell
-npm install ts-react-listview
+yarn add ts-react-listview
 ```
 
 # release
-* [2024/3/17]v1.0.0 released 
+* [2024/3/23] v1.0.2 released 
+1. デザインを修正しました。
+1. スマートフォンでも、スクロールバーが適切に表示されるようになりました。
+
+* [2024/3/17] v1.0.0 released 
 
 # 簡単な例
 <a href="https://app.archive-gp.com/ts-react-listview/example1">demo</a>
@@ -78,7 +77,7 @@ export function Example1Page(
 # 行ヘッダを表示する
 <a href="https://app.archive-gp.com/ts-react-listview/example2">demo</a>
 * ```hasRowHeader={true}```に設定すると、行ヘッダが表示されます。
-* 行ヘッダを表示した場合、行の幅と、高さを指定する必要があります。```rowHeaderWidth={300} rowHeight={100} ```
+* 行ヘッダを表示した場合、行の幅と、高さを指定する必要があります。```rowHeaderWidth={100} rowHeight={50} ```
 * 
 ``` typescript
 import React from 'react';
@@ -100,7 +99,7 @@ export function Example2Page(
   return (
     <PageLayout title="Example1">
       <div>
-        <ListView hasRowHeader={true} rowHeaderWidth={300} rowHeight={100}headers={[
+        <ListView hasRowHeader={true} rowHeaderWidth={100} rowHeight={50} headers={[
           {
             name: "a",
             label: <div className={styles.listViewCloumn}>A</div>,
